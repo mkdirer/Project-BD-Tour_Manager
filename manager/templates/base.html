@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbars/">
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+          .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+          }
+        </style>
+    </head>
+    <body style="background-color: rgb(151, 209, 226);">
+      <nav class="navbar navbar-expand-lg navbar-lightgray bg-lightgray">
+        <a class="navbar-brand" href="/">Menedżer wycieczek</a>
+        <div class="collapse navbar-collapse" style="background-color: rgb(151, 209, 226);">
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Wprowadź dane</a>
+              <ul class="dropdown-menu" style="background-color: rgb(192, 209, 235);">
+                <li><a class="dropdown-item" href="/insert/uzytkownik_aplikacji">Dodaj użytkownika aplikacji</a></li>
+                <li><a class="dropdown-item" href="/insert/pasazer">Dodaj pasażera</a></li>
+                <li><a class="dropdown-item" href="/insert/kapitan">Dodaj kapitana</a></li>
+                <li><a class="dropdown-item" href="/insert/majtek">Dodaj majtka</a></li>
+                <li><a class="dropdown-item" href="/insert/obsluga_portu">Dodaj obsługę portu</a></li>
+                <li><a class="dropdown-item" href="/insert/pasazer_w_podrozy">Dodaj pasażera do podróży</a></li>
+                <li><a class="dropdown-item" href="/insert/majtek_w_podrozy">Dodaj majtka do podróży</a></li>
+                <li><a class="dropdown-item" href="/insert/port">Dodaj port</a></li>
+                <li><a class="dropdown-item" href="/insert/statek">Dodaj statek</a></li>
+                <li><a class="dropdown-item" href="/insert/rejs">Dodaj rejs</a></li>
+                <li><a class="dropdown-item" href="/insert/bagaz">Dodaj bagaż</a></li>
+                <li><a class="dropdown-item" href="/insert/przedmiot">Dodaj przedmiot</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Wprowadzone Dane</a>
+              <ul class="dropdown-menu" style="background-color: rgb(192, 209, 235);">
+                <li><a class="dropdown-item" href="/raport/uzytkownik_aplikacji">Pokaż użytkowników aplikacji</a></li>
+                <li><a class="dropdown-item" href="/raport/pasazer">Pokaż pasażerów</a></li>
+                <li><a class="dropdown-item" href="/raport/kapitan">Pokaż kapitanów</a></li>
+                <li><a class="dropdown-item" href="/raport/majtek">Pokaż majtków</a></li>
+                <li><a class="dropdown-item" href="/raport/obsluga_portu">Pokaż obsługę portu</a></li>
+                <li><a class="dropdown-item" href="/raport/pasazer_w_podrozy">Pokaż pasażerów w rejsie</a></li>
+                <li><a class="dropdown-item" href="/raport/majtek_w_podrozy">Pokaż majtka w rejsie</a></li>
+                <li><a class="dropdown-item" href="/raport/port">Pokaż porty</a></li>
+                <li><a class="dropdown-item" href="/raport/statek">Pokaż statatki</a></li>
+                <li><a class="dropdown-item" href="/raport/rejs">Pokaż rejsy</a></li>
+                <li><a class="dropdown-item" href="/raport/bagaz">Pokaż bagaże</a></li>
+                <li><a class="dropdown-item" href="/raport/przedmiot">Pokaż przedmioty</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Zapisy</a>
+              <ul class="dropdown-menu" style="background-color: rgb(192, 209, 235);">
+                <li><a class="dropdown-item" href="/insert/pasazer_w_podrozy">Zapisz pasażera na rejs</a></li>
+                <li><a class="dropdown-item" href="/insert/majtek_w_podrozy">Przydziel majtka do rejsu</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Raporty</a>
+              <ul class="dropdown-menu" style="background-color: rgb(192, 209, 235);">
+                <li><a class="dropdown-item" href="/widok/Dane_pasazerow">Szczegółowe dane o biletach</a></li>
+                <li><a class="dropdown-item" href="/widok/Dane_rejsu">Szczegółowe dane o rejsach</a></li>
+                <li><a class="dropdown-item" href="/widok/Osoby_ktore_wydaly_ponad_300_Euro_na_bilety">Pasażerowie którzy wydali ponad 300 Euro</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Usuń</a>
+              <ul class="dropdown-menu" style="background-color: rgb(192, 209, 235);">
+                <li><a class="dropdown-item" href="/delete/bagaz">Usuń bagaż</a></li>
+                <li><a class="dropdown-item" href="/delete/przedmiot">Usuń przedmiot</a></li>
+                <li><a class="dropdown-item" href="/delete/pasazer_w_podrozy">Usuń pasażera z rejsu</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <a href="/insert/uzytkownik_aplikacji"><button class="btn btn-outline-primary me-2" type="button">Zarejestuj się</button></a>
+        {% if 'user' not in session %}
+        <a href="/login"><button class="btn btn-outline-success me-2" type="button">Zaloguj się</button></a>
+        {% else %}
+        <a href="/logout"><button class="btn btn-outline-danger me-2" type="button">Wyloguj się</button></a>
+        {% endif %}
+      </nav>
+      {% for message in get_flashed_messages() %}
+        <p style="color:red">{{ message }}</p>
+      {% endfor %}
+      {% block content %}{% endblock %}
+      <footer class="footer">
+        <div class="container">
+          <span class="text-muted">Łukasz Wajda - Projekt Bazy Danych I</span>
+        </div>
+      </footer>
+	  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>	  
+    </body>
+</html>
